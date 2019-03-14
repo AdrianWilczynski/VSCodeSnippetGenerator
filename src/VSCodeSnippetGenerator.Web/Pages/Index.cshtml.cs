@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,11 @@ namespace VSCodeSnippetGenerator.Web.Pages
         public string Description { get; set; }
         public string Body { get; set; }
         public string Snippet { get; set; }
+
+        [Display(Name = "Convert to Tabs?")]
         public bool ConvertToTabs { get; set; } = true;
+
+        [Display(Name = "Spaces per Tab")]
         public int? TabLength { get; set; } = 4;
 
         public void OnGet() => Snippet = SerializeSnippet();
