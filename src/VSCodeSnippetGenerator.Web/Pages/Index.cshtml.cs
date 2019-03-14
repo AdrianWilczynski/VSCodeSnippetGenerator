@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using VSCodeSnippetGenerator.Web.Models;
 
 namespace VSCodeSnippetGenerator.Web.Pages
 {
@@ -18,7 +17,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
         public string Description { get; set; }
         public string Body { get; set; }
         public string Snippet { get; set; }
-        public bool ConvertToTabs { get; set; }
+        public bool ConvertToTabs { get; set; } = true;
         public int? TabLength { get; set; } = 4;
 
         public void OnGet() => Snippet = SerializeSnippet();
@@ -28,15 +27,18 @@ namespace VSCodeSnippetGenerator.Web.Pages
         private string SerializeSnippet()
             => JsonConvert.SerializeObject(GetSnippet(Name, Prefix, Body, Description), Formatting.Indented);
 
-        private Dictionary<string, Snippet> GetSnippet(string name, string prefix, string body, string description)
-            => new Dictionary<string, Snippet>
+        private Dictionary<string, object> GetSnippet(string name, string prefix, string body, string description)
+            => new Dictionary<string, object>
             {
                 {
-                    name ?? string.Empty, new Snippet
+                    name ?? string.Empty, new
                     {
                         Prefix = prefix ?? string.Empty,
                         Body = body != null && body.Any()
-                            ? ReadAllLines(body.Replace(new string(' ', (int)TabLength), "\t"))
+                            ? ReadAllLines(
+                                ConvertToTabs && TabLength != null
+                                    ? body.Replace(new string(' ', (int)TabLength), "\t")
+                                    : body)
                             : new List<string> { string.Empty },
                         Description = description ?? string.Empty
                     }
