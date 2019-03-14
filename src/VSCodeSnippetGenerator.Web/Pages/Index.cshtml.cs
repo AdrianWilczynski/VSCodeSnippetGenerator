@@ -20,7 +20,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
         public string Description { get; set; }
 
         [Display(Name = "Has Description?")]
-        public bool HasDescription { get; set; } = true;
+        public bool HasDescription { get; set; }
 
         public string Body { get; set; }
         public string Snippet { get; set; }
@@ -50,7 +50,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
                 Formatting.Indented);
 
         private string SerializeEmptySnippet()
-            => JsonConvert.SerializeObject(GetSnippet(null, null, null, null, true, null, false), Formatting.Indented);
+            => JsonConvert.SerializeObject(GetSnippet(null, null, null, null, false, null, false), Formatting.Indented);
 
         private Dictionary<string, Dictionary<string, object>> GetSnippet(string name, string prefix, string body,
             string description, bool hasDescription,
