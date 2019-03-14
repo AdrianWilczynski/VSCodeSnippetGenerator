@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,12 @@ namespace VSCodeSnippetGenerator.Web.Pages
     {
         public string Name { get; set; }
         public string Prefix { get; set; }
+
         public string Description { get; set; }
+
+        [Display(Name = "Has Description?")]
+        public bool HasDescription { get; set; } = true;
+
         public string Body { get; set; }
         public string Snippet { get; set; }
 
@@ -40,28 +46,39 @@ namespace VSCodeSnippetGenerator.Web.Pages
         }
 
         private string SerializeSnippet()
-            => JsonConvert.SerializeObject(GetSnippet(Name, Prefix, Body, Description), Formatting.Indented);
+            => JsonConvert.SerializeObject(GetSnippet(Name, Prefix, Body, Description, HasDescription, TabLength, ConvertToTabs),
+                Formatting.Indented);
 
         private string SerializeEmptySnippet()
-            => JsonConvert.SerializeObject(GetSnippet(null, null, null, null), Formatting.Indented);
+            => JsonConvert.SerializeObject(GetSnippet(null, null, null, null, true, null, false), Formatting.Indented);
 
-        private Dictionary<string, object> GetSnippet(string name, string prefix, string body, string description)
-            => new Dictionary<string, object>
+        private Dictionary<string, Dictionary<string, object>> GetSnippet(string name, string prefix, string body,
+            string description, bool hasDescription,
+            int? tabLength, bool convertToTabs)
+        {
+            var snippetDetails = new Dictionary<string, object>
             {
+                { nameof(prefix), prefix ?? string.Empty },
                 {
-                    name ?? string.Empty, new
-                    {
-                        Prefix = prefix ?? string.Empty,
-                        Body = body != null && body.Any()
-                            ? ReadAllLines(
-                                ConvertToTabs && TabLength != null
-                                    ? body.Replace(new string(' ', (int)TabLength), "\t")
-                                    : body)
-                            : new List<string> { string.Empty },
-                        Description = description ?? string.Empty
-                    }
+                    nameof(body),
+                    body != null && body.Any()
+                        ? ReadAllLines(convertToTabs && tabLength != null
+                            ? body.Replace(new string(' ', (int)TabLength), "\t")
+                            : body)
+                        : new List<string> { string.Empty }
                 }
             };
+
+            if (hasDescription)
+            {
+                snippetDetails.Add(nameof(description), description ?? string.Empty);
+            }
+
+            return new Dictionary<string, Dictionary<string, object>>
+            {
+                { name ?? string.Empty, snippetDetails }
+            };
+        }
 
         private IEnumerable<string> ReadAllLines(string body)
         {
