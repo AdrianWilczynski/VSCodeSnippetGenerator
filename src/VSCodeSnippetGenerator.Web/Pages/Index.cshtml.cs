@@ -23,14 +23,27 @@ namespace VSCodeSnippetGenerator.Web.Pages
         public bool ConvertToTabs { get; set; } = true;
 
         [Display(Name = "Spaces per Tab")]
+        [Range(1, 8)]
         public int? TabLength { get; set; } = 4;
 
-        public void OnGet() => Snippet = SerializeSnippet();
+        public void OnGet() => Snippet = SerializeEmptySnippet();
 
-        public void OnPost() => Snippet = SerializeSnippet();
+        public void OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                Snippet = SerializeEmptySnippet();
+                return;
+            }
+
+            Snippet = SerializeSnippet();
+        }
 
         private string SerializeSnippet()
             => JsonConvert.SerializeObject(GetSnippet(Name, Prefix, Body, Description), Formatting.Indented);
+
+        private string SerializeEmptySnippet()
+            => JsonConvert.SerializeObject(GetSnippet(null, null, null, null), Formatting.Indented);
 
         private Dictionary<string, object> GetSnippet(string name, string prefix, string body, string description)
             => new Dictionary<string, object>

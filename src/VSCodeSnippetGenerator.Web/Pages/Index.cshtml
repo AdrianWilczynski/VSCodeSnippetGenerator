@@ -23,7 +23,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="@Model.TabLength"></label>
-                        <input asp-for="@Model.TabLength" class="form-control" />
+                        <input asp-for="@Model.TabLength" min="1" max="8" class="form-control" />
                         <span asp-validation-for="@Model.TabLength" class="text-danger"></span>
                     </div>
                     <div class="form-check text-right">
@@ -42,11 +42,12 @@
                 <textarea asp-for="@Model.Description" rows="2" class="form-control"></textarea>
                 <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </div>
-            <button class="btn btn-primary float-right">Generate</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+            <button type="submit" class="btn btn-primary float-right">Generate</button>
         </form>
     </div>
     <div class="col-12 col-lg-6">
         <label asp-for="@Model.Snippet"></label>
-        <textarea asp-for="@Model.Snippet" rows="15" class="form-control snippet-area"></textarea>
+        <textarea asp-for="@Model.Snippet" rows="20" class="form-control snippet-area"></textarea>
     </div>
 </div>
