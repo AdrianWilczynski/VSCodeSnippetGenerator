@@ -5,7 +5,7 @@ descriptionArea.addEventListener('input', event => {
 });
 
 let tabLengthInput = document.getElementById('TabLength') as HTMLInputElement;
-tabLengthInput.addEventListener('input', evnet => {
+tabLengthInput.addEventListener('input', event => {
     let convertToTabsCheckbox = document.getElementById('ConvertToTabs') as HTMLInputElement;
     convertToTabsCheckbox.checked = !!tabLengthInput.value;
 })
