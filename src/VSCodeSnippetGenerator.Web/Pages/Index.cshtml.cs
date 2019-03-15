@@ -35,7 +35,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
         public bool ConvertToTabs { get; set; } = true;
 
         [Display(Name = "Spaces per Tab")]
-        [Range(1, 8)]
+        [Range(2, 8)]
         public int? TabLength { get; set; } = 4;
 
         public void OnGet() => Snippet = GetOnlyBody(SerializeEmptySnippet());
