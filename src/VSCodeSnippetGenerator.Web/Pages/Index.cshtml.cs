@@ -14,15 +14,21 @@ namespace VSCodeSnippetGenerator.Web.Pages
     [BindProperties]
     public class IndexModel : PageModel
     {
+        [Display(Prompt = "prop")]
         public string Name { get; set; }
+
+        [Display(Prompt = "prop")]
         public string Prefix { get; set; }
 
+        [Display(Prompt = "An automatically implemented property. C# 3.0 or higher")]
         public string Description { get; set; }
 
         [Display(Name = "Has Description?")]
         public bool HasDescription { get; set; }
 
+        [Display(Prompt = "public ${1:int} ${2:MyProperty} { get; set; }$0")]
         public string Body { get; set; }
+
         public string Snippet { get; set; }
 
         [Display(Name = "Convert to Tabs?")]
