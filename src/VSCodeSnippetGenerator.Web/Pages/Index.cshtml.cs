@@ -14,13 +14,13 @@ namespace VSCodeSnippetGenerator.Web.Pages
     [BindProperties]
     public class IndexModel : PageModel
     {
-        [Display(Prompt = "prop")]
+        [Display(Prompt = "Property")]
         public string Name { get; set; }
 
         [Display(Prompt = "prop")]
         public string Prefix { get; set; }
 
-        [Display(Prompt = "An automatically implemented property. C# 3.0 or higher")]
+        [Display(Prompt = "An automatically implemented property.")]
         public string Description { get; set; }
 
         [Display(Name = "Has Description?")]
