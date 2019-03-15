@@ -32,17 +32,28 @@ namespace VSCodeSnippetGenerator.Web.Pages
         [Range(1, 8)]
         public int? TabLength { get; set; } = 4;
 
-        public void OnGet() => Snippet = SerializeEmptySnippet();
+        public void OnGet() => Snippet = GetOnlyBody(SerializeEmptySnippet());
 
         public void OnPost()
         {
             if (!ModelState.IsValid)
             {
-                Snippet = SerializeEmptySnippet();
+                Snippet = GetOnlyBody(SerializeEmptySnippet());
                 return;
             }
 
-            Snippet = SerializeSnippet();
+            Snippet = GetOnlyBody(SerializeSnippet());
+        }
+
+        private string GetOnlyBody(string json)
+        {
+            var lines = ReadAllLines(json);
+            lines = lines
+                .Take(lines.Count() - 1)
+                .Skip(1)
+                .Select(l => l.Substring(2));
+
+            return string.Join(Environment.NewLine, lines);
         }
 
         private string SerializeSnippet()
