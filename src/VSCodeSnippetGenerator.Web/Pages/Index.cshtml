@@ -28,7 +28,7 @@
                         <datalist id="LengthPerLanguage">
                             @foreach (var i in Indentation.PerLanguage)
                             {
-                                <option value="@i.tabLength" label="@i.language" />
+                                <option value="@i.tabLength" label="@i.language (@i.tool)" />
                             }
                         </datalist>
                     </div>
