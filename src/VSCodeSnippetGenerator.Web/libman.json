@@ -5,6 +5,10 @@
     {
       "library": "bootswatch@4.3.1",
       "destination": "wwwroot\\lib\\bootswatch"
+    },
+    {
+      "library": "font-awesome@5.7.2",
+      "destination": "wwwroot\\lib\\font-awesome"
     }
   ]
 }
