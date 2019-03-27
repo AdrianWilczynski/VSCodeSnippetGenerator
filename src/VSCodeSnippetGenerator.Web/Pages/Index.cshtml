@@ -23,12 +23,12 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="@Model.TabLength"></label>
-                        <input asp-for="@Model.TabLength" min="2" max="8" list="LengthPerLanguage" class="form-control" />
+                        <input asp-for="@Model.TabLength" min="2" max="8" list="SpacesPerTab" class="form-control" />
                         <span asp-validation-for="@Model.TabLength" class="text-danger"></span>
-                        <datalist id="LengthPerLanguage">
-                            @foreach (var i in Indentation.PerLanguage)
+                        <datalist id="SpacesPerTab">
+                            @foreach (var i in Indentation.SpacesPerTab)
                             {
-                                <option value="@i.tabLength" label="@i.language (@i.tool)" />
+                                <option value="@i" />
                             }
                         </datalist>
                     </div>
