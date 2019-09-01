@@ -10,31 +10,29 @@
             <div class="form-row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="@Model.Name"></label>
-                        <input asp-for="@Model.Name" class="form-control" />
-                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        <label asp-for="SnippetInput.Name"></label>
+                        <input asp-for="SnippetInput.Name" class="form-control" />
+                        <span asp-validation-for="SnippetInput.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.Prefix"></label>
-                        <input asp-for="@Model.Prefix" class="form-control" />
-                        <span asp-validation-for="@Model.Prefix" class="text-danger"></span>
+                        <label asp-for="SnippetInput.Prefix"></label>
+                        <input asp-for="SnippetInput.Prefix" class="form-control" />
+                        <span asp-validation-for="SnippetInput.Prefix" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="@Model.TabLength"></label>
-                        <input asp-for="@Model.TabLength" min="2" max="8" list="SpacesPerTab" class="form-control" />
-                        <span asp-validation-for="@Model.TabLength" class="text-danger"></span>
+                        <label asp-for="SnippetInput.TabLength"></label>
+                        <input asp-for="SnippetInput.TabLength" min="2" max="8" value="4" list="SpacesPerTab" class="form-control" />
+                        <span asp-validation-for="SnippetInput.TabLength" class="text-danger"></span>
                         <datalist id="SpacesPerTab">
-                            @foreach (var i in Indentation.SpacesPerTab)
-                            {
-                                <option value="@i" />
-                            }
+                            <option value="2" />
+                            <option value="4" />
                         </datalist>
                     </div>
                     <div class="form-check text-right">
-                        <input asp-for="@Model.ConvertToTabs" class="form-check-input">
-                        <label asp-for="@Model.ConvertToTabs" class="form-check-label"></label>
+                        <input asp-for="SnippetInput.ConvertToTabs" class="form-check-input">
+                        <label asp-for="SnippetInput.ConvertToTabs" class="form-check-label"></label>
                     </div>
                     <div class="mt-3 text-right">
                         <i class="fas fa-question-circle text-primary mr-3"></i>
@@ -45,19 +43,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Body"></label>
-                <textarea asp-for="@Model.Body" rows="10" class="form-control"></textarea>
-                <span asp-validation-for="@Model.Body" class="text-danger"></span>
+                <label asp-for="SnippetInput.Body"></label>
+                <textarea asp-for="SnippetInput.Body" rows="10" class="form-control"></textarea>
+                <span asp-validation-for="SnippetInput.Body" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <div class="form-group">
-                    <label asp-for="@Model.Description"></label>
-                    <textarea asp-for="@Model.Description" rows="2" class="form-control"></textarea>
-                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    <label asp-for="SnippetInput.Description"></label>
+                    <textarea asp-for="SnippetInput.Description" rows="2" class="form-control"></textarea>
+                    <span asp-validation-for="SnippetInput.Description" class="text-danger"></span>
                 </div>
                     <div class="form-check text-right">
-                    <input asp-for="@Model.HasDescription" class="form-check-input">
-                    <label asp-for="@Model.HasDescription" class="form-check-label"></label>
+                    <input asp-for="SnippetInput.HasDescription" class="form-check-input">
+                    <label asp-for="SnippetInput.HasDescription" class="form-check-label"></label>
                 </div>
             </div>
             <button type="reset" class="btn btn-danger">Reset</button>
@@ -67,8 +65,8 @@
     </div>
     <div class="col-12 col-lg-6 clearfix">
         <div class="form-group">
-            <label asp-for="@Model.Snippet"></label>
-            <textarea asp-for="@Model.Snippet" rows="20" class="form-control snippet-area"></textarea>
+            <label asp-for="SnippetOutput"></label>
+            <textarea asp-for="SnippetOutput" rows="20" class="form-control snippet-area"></textarea>
         </div>
         <button id="CopyToClipboard" class="btn btn-primary float-right">Copy To Clipboard</button>
     </div>

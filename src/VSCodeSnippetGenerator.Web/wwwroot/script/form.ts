@@ -10,7 +10,7 @@ tabLengthInput.addEventListener('input', event => {
     convertToTabsCheckbox.checked = !!tabLengthInput.value;
 });
 
-let copyToClipboardButton = document.getElementById('CopyToClipboard');
+let copyToClipboardButton = document.getElementById('CopyToClipboard') as HTMLButtonElement;
 copyToClipboardButton.addEventListener('click', event => {
     let snippetArea = document.getElementById('Snippet') as HTMLTextAreaElement;
     snippetArea.select();
