@@ -1,18 +1,18 @@
-let descriptionArea = document.getElementById('Description') as HTMLTextAreaElement;
+const descriptionArea = document.getElementById('SnippetInput_Description') as HTMLTextAreaElement;
 descriptionArea.addEventListener('input', event => {
-    let hasDescriptionCheckbox = document.getElementById('HasDescription') as HTMLInputElement
+    const hasDescriptionCheckbox = document.getElementById('SnippetInput_HasDescription') as HTMLInputElement
     hasDescriptionCheckbox.checked = descriptionArea.value.length > 0;
 });
 
-let tabLengthInput = document.getElementById('TabLength') as HTMLInputElement;
+const tabLengthInput = document.getElementById('SnippetInput_TabLength') as HTMLInputElement;
 tabLengthInput.addEventListener('input', event => {
-    let convertToTabsCheckbox = document.getElementById('ConvertToTabs') as HTMLInputElement;
+    const convertToTabsCheckbox = document.getElementById('SnippetInput_ConvertToTabs') as HTMLInputElement;
     convertToTabsCheckbox.checked = !!tabLengthInput.value;
 });
 
-let copyToClipboardButton = document.getElementById('CopyToClipboard') as HTMLButtonElement;
+const copyToClipboardButton = document.getElementById('CopyToClipboard') as HTMLButtonElement;
 copyToClipboardButton.addEventListener('click', event => {
-    let snippetArea = document.getElementById('Snippet') as HTMLTextAreaElement;
+    const snippetArea = document.getElementById('SnippetOutput') as HTMLTextAreaElement;
     snippetArea.select();
     document.execCommand('copy');
 });

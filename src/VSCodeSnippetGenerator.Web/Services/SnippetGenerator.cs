@@ -20,9 +20,9 @@ namespace VSCodeSnippetGenerator.Web.Services
         {
             var snippetDetails = new Dictionary<string, object>
             {
-                { nameof(input.Prefix), input.Prefix ?? string.Empty },
+                { "prefix", input.Prefix ?? string.Empty },
                 {
-                    nameof(input.Body),
+                    "body",
                     input.Body?.Any() == true
                         ? EnsureRequestedIndentation(input.Body, input.ConvertToTabs, input.TabLength).GetLines()
                         : new List<string> { string.Empty }
@@ -31,7 +31,7 @@ namespace VSCodeSnippetGenerator.Web.Services
 
             if (input.HasDescription)
             {
-                snippetDetails.Add(nameof(input.Description), input.Description ?? string.Empty);
+                snippetDetails.Add("description", input.Description ?? string.Empty);
             }
 
             return new Dictionary<string, Dictionary<string, object>>
