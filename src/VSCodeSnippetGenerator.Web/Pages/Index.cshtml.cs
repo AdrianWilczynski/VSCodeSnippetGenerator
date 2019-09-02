@@ -15,7 +15,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
             _snippetGenerator = snippetGenerator;
         }
 
-        public SnippetInput SnippetInput { get; set; }
+        public SnippetInput SnippetInput { get; set; } = new SnippetInput();
         public string SnippetOutput { get; set; }
 
         public void OnGet() => SnippetOutput = _snippetGenerator.GetSnippet(SnippetInput.Empty);
