@@ -35,7 +35,7 @@ namespace VSCodeSnippetGenerator.Web
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithRedirects("/Error");
+            app.UseStatusCodePagesWithRedirects("/StatusCode/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

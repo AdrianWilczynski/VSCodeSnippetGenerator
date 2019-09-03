@@ -1,0 +1,11 @@
+@page "{code:int?}"
+@{
+    ViewData["Title"] = "StatusCode";
+}
+
+<h2 class="text-warning text-center">@(Code?.ToString() ?? "What status code...?")</h2>
+
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public int? Code { get; set; }
+}
