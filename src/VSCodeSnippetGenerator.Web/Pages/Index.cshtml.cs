@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using VSCodeSnippetGenerator.Web.Models;
 using VSCodeSnippetGenerator.Web.Services;
@@ -16,6 +17,8 @@ namespace VSCodeSnippetGenerator.Web.Pages
         }
 
         public SnippetInput SnippetInput { get; set; } = new SnippetInput();
+
+        [Display(Name = "Snippet")]
         public string SnippetOutput { get; set; }
 
         public void OnGet() => SnippetOutput = _snippetGenerator.GetSnippet(SnippetInput.Empty);
@@ -24,7 +27,7 @@ namespace VSCodeSnippetGenerator.Web.Pages
         {
             if (!ModelState.IsValid)
             {
-                 SnippetOutput = _snippetGenerator.GetSnippet(SnippetInput.Empty);
+                SnippetOutput = _snippetGenerator.GetSnippet(SnippetInput.Empty);
                 return;
             }
 
