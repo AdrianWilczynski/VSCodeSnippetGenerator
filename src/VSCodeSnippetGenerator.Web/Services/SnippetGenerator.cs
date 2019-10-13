@@ -62,5 +62,4 @@ namespace VSCodeSnippetGenerator.Web.Services
             return string.Join(Environment.NewLine, lines);
         }
     }
-
 }

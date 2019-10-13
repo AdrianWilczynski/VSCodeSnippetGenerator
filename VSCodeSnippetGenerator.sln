@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C63CE792-8AA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSCodeSnippetGenerator.Web", "src\VSCodeSnippetGenerator.Web\VSCodeSnippetGenerator.Web.csproj", "{A16E3BE9-36B9-45A1-889E-98E27DDEEB49}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{58EA04B5-BF04-446D-95F0-05CEC69D90E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSCodeSnippetGenerator.Tests", "test\VSCodeSnippetGenerator.Tests\VSCodeSnippetGenerator.Tests.csproj", "{7A9287C9-A300-4200-ADEA-3574EE8AF651}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{A16E3BE9-36B9-45A1-889E-98E27DDEEB49}.Release|x64.Build.0 = Release|Any CPU
 		{A16E3BE9-36B9-45A1-889E-98E27DDEEB49}.Release|x86.ActiveCfg = Release|Any CPU
 		{A16E3BE9-36B9-45A1-889E-98E27DDEEB49}.Release|x86.Build.0 = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Debug|x86.Build.0 = Debug|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|x64.Build.0 = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A16E3BE9-36B9-45A1-889E-98E27DDEEB49} = {C63CE792-8AAB-4E47-8676-A1200061ACC6}
+		{7A9287C9-A300-4200-ADEA-3574EE8AF651} = {58EA04B5-BF04-446D-95F0-05CEC69D90E8}
 	EndGlobalSection
 EndGlobal
