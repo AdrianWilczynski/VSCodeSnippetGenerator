@@ -5,7 +5,7 @@ using Xunit;
 
 namespace VSCodeSnippetGenerator.Tests
 {
-    public class UnitTest1
+    public class SnippetGeneratorShould
     {
         [Fact]
         public void GeneratePropertySnippet()
