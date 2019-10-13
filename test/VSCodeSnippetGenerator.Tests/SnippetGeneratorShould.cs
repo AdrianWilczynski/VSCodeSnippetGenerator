@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 using VSCodeSnippetGenerator.Web.Models;
 using VSCodeSnippetGenerator.Web.Services;
