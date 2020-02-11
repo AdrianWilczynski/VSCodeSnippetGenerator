@@ -21,6 +21,7 @@ namespace VSCodeSnippetGenerator.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<SnippetGenerator>();
+            services.AddScoped<SnippetDeserializer>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

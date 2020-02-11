@@ -12,29 +12,28 @@ namespace VSCodeSnippetGenerator.Web.Services
         public string GetSnippet(SnippetInput input)
         {
             var shape = ShapeSnippet(input);
-            var json = JsonConvert.SerializeObject(shape, Formatting.Indented);
+
+            var json = JsonConvert.SerializeObject(shape, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
             return GetJsonBody(json);
         }
 
-        private Dictionary<string, Dictionary<string, object>> ShapeSnippet(SnippetInput input)
+        private Dictionary<string, SnippetDetails> ShapeSnippet(SnippetInput input)
         {
-            var snippetDetails = new Dictionary<string, object>
+            var snippetDetails = new SnippetDetails
             {
-                { "prefix", input.Prefix ?? string.Empty },
-                {
-                    "body",
-                    input.Body?.Any() == true
-                        ? EnsureRequestedIndentation(input.Body, input.ConvertToTabs, input.TabLength).GetLines()
-                        : new List<string> { string.Empty }
-                }
+                Prefix = input.Prefix ?? string.Empty,
+                Body = input.Body?.Any() == true
+                    ? EnsureRequestedIndentation(input.Body, input.ConvertToTabs, input.TabLength).GetLines()
+                    : new List<string> { string.Empty },
+                Description = input.HasDescription ? input.Description ?? string.Empty : null
             };
 
-            if (input.HasDescription)
-            {
-                snippetDetails.Add("description", input.Description ?? string.Empty);
-            }
-
-            return new Dictionary<string, Dictionary<string, object>>
+            return new Dictionary<string, SnippetDetails>
             {
                 { input.Name ?? string.Empty, snippetDetails }
             };

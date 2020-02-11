@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-12 col-lg-6">
-        <form method="POST" class="clearfix">
+        <form method="POST" asp-page="Index" class="clearfix">
             <div class="form-row">
                 <div class="col-6">
                     <div class="form-group">
@@ -64,11 +64,15 @@
         </form>
     </div>
     <div class="col-12 col-lg-6 clearfix">
-        <div class="form-group">
-            <label asp-for="SnippetOutput"></label>
-            <textarea asp-for="SnippetOutput" rows="20" class="form-control snippet-area"></textarea>
-        </div>
-        <button id="CopyToClipboard" class="btn btn-primary float-right">Copy To Clipboard</button>
+        <form method="POST" asp-page="Index" asp-page-handler="Deserialize">
+            <div class="form-group">
+                <label asp-for="SnippetOutput"></label>
+                <textarea asp-for="SnippetOutput" rows="20" class="form-control snippet-area"></textarea>
+                <span asp-validation-for="SnippetOutput" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-secondary">Deserialize</button>
+            <button type="button" id="CopyToClipboard" class="btn btn-primary float-right">Copy To Clipboard</button>
+        </form>
     </div>
 </div>
 
