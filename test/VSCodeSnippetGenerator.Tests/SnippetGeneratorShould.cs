@@ -27,11 +27,11 @@ namespace VSCodeSnippetGenerator.Tests
             var lines = Regex.Split(snippet, @"\r?\n");
 
             Assert.Equal("\"Property\": {", lines[0]);
-            Assert.Equal("  \"prefix\": \"prop\",", lines[1]);
-            Assert.Equal("  \"body\": [", lines[2]);
-            Assert.Equal("    \"public ${1:int} ${2:MyProperty} { get; set; }$0\"", lines[3]);
-            Assert.Equal("  ],", lines[4]);
-            Assert.Equal("  \"description\": \"An automatically implemented property.\"", lines[5]);
+            Assert.Equal("    \"prefix\": \"prop\",", lines[1]);
+            Assert.Equal("    \"body\": [", lines[2]);
+            Assert.Equal("        \"public ${1:int} ${2:MyProperty} { get; set; }$0\"", lines[3]);
+            Assert.Equal("    ],", lines[4]);
+            Assert.Equal("    \"description\": \"An automatically implemented property.\"", lines[5]);
             Assert.Equal("}", lines[6]);
         }
 
@@ -43,10 +43,10 @@ namespace VSCodeSnippetGenerator.Tests
             var lines = Regex.Split(snippet, @"\r?\n");
 
             Assert.Equal("\"\": {", lines[0]);
-            Assert.Equal("  \"prefix\": \"\",", lines[1]);
-            Assert.Equal("  \"body\": [", lines[2]);
-            Assert.Equal("    \"\"", lines[3]);
-            Assert.Equal("  ]", lines[4]);
+            Assert.Equal("    \"prefix\": \"\",", lines[1]);
+            Assert.Equal("    \"body\": [", lines[2]);
+            Assert.Equal("        \"\"", lines[3]);
+            Assert.Equal("    ]", lines[4]);
             Assert.Equal("}", lines[5]);
         }
 
@@ -67,11 +67,11 @@ namespace VSCodeSnippetGenerator.Tests
             var lines = Regex.Split(snippet, @"\r?\n");
 
             Assert.Equal("\"Property\": {", lines[0]);
-            Assert.Equal("  \"prefix\": \"prop\",", lines[1]);
-            Assert.Equal("  \"body\": [", lines[2]);
-            Assert.Equal("    \"public ${1:int} ${2:MyProperty} { get; set; }$0\",", lines[3]);
-            Assert.Equal("    \"// Second Line\"", lines[4]);
-            Assert.Equal("  ]", lines[5]);
+            Assert.Equal("    \"prefix\": \"prop\",", lines[1]);
+            Assert.Equal("    \"body\": [", lines[2]);
+            Assert.Equal("        \"public ${1:int} ${2:MyProperty} { get; set; }$0\",", lines[3]);
+            Assert.Equal("        \"// Second Line\"", lines[4]);
+            Assert.Equal("    ]", lines[5]);
             Assert.Equal("}", lines[6]);
         }
 
@@ -95,10 +95,10 @@ namespace VSCodeSnippetGenerator.Tests
             var lines = Regex.Split(snippet, @"\r?\n");
 
             Assert.Equal("\"Property\": {", lines[0]);
-            Assert.Equal("  \"prefix\": \"prop\",", lines[1]);
-            Assert.Equal("  \"body\": [", lines[2]);
-            Assert.Equal("    \"\\tpublic ${1:int} ${2:MyProperty} { get; set; }$0\"", lines[3]);
-            Assert.Equal("  ]", lines[4]);
+            Assert.Equal("    \"prefix\": \"prop\",", lines[1]);
+            Assert.Equal("    \"body\": [", lines[2]);
+            Assert.Equal("        \"\\tpublic ${1:int} ${2:MyProperty} { get; set; }$0\"", lines[3]);
+            Assert.Equal("    ]", lines[4]);
             Assert.Equal("}", lines[5]);
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using VSCodeSnippetGenerator.Web.Extensions;
@@ -9,15 +10,27 @@ namespace VSCodeSnippetGenerator.Web.Services
 {
     public class SnippetGenerator
     {
+        public const int Indentation = 4;
+
         public string GetSnippet(SnippetInput input)
         {
             var shape = ShapeSnippet(input);
 
-            var json = JsonConvert.SerializeObject(shape, new JsonSerializerSettings
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter)
             {
                 Formatting = Formatting.Indented,
+                Indentation = Indentation
+            };
+
+            var serilizer = new JsonSerializer()
+            {
                 NullValueHandling = NullValueHandling.Ignore
-            });
+            };
+
+            serilizer.Serialize(jsonWriter, shape);
+
+            var json = stringWriter.ToString();
 
             return GetJsonBody(json);
         }
@@ -56,7 +69,7 @@ namespace VSCodeSnippetGenerator.Web.Services
             lines = lines
                 .Take(lines.Count() - 1)
                 .Skip(1)
-                .Select(l => l.Substring(2));
+                .Select(l => l.Substring(Indentation));
 
             return string.Join(Environment.NewLine, lines);
         }
