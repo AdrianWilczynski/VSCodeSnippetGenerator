@@ -7,13 +7,10 @@ namespace VSCodeSnippetGenerator.Web.Extensions
     {
         public static IEnumerable<string> GetLines(this string value)
         {
-            using (var reader = new StringReader(value))
+            using var reader = new StringReader(value);
+            while (reader.ReadLine() is string line)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    yield return line;
-                }
+                yield return line;
             }
         }
     }
