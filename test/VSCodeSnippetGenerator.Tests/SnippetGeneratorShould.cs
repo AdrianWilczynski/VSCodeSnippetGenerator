@@ -101,5 +101,17 @@ namespace VSCodeSnippetGenerator.Tests
             Assert.Equal("    ]", lines[4]);
             Assert.Equal("}", lines[5]);
         }
+
+        [Fact]
+        public void EscapeDollarSigns()
+        {
+            var input = new SnippetInput { Body = "$name = ${1:name};" };
+
+            var snippet = new SnippetGenerator().GetSnippet(input);
+
+            var lines = Regex.Split(snippet, @"\r?\n");
+
+            Assert.Equal("        \"\\\\$name = ${1:name};\"", lines[3]);
+        }
     }
 }
