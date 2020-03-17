@@ -75,7 +75,6 @@ namespace VSCodeSnippetGenerator.Tests
             Assert.Equal("}", lines[6]);
         }
 
-
         [Fact]
         public void ConvertSpacesToTabs()
         {
