@@ -9,7 +9,7 @@ namespace VSCodeSnippetGenerator.Web.Models
         public string Prefix { get; set; }
 
         [JsonProperty("body")]
-        public IEnumerable<string> Body { get; set; }
+        public object Body { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

@@ -20,7 +20,12 @@ namespace VSCodeSnippetGenerator.Web.Services
             var deserializedSnipped = JsonConvert.DeserializeObject<Dictionary<string, SnippetDetails>>(snippetText)
                 .FirstOrDefault();
 
-            var lines = deserializedSnipped.Value?.Body ?? Enumerable.Empty<string>();
+            var lines = deserializedSnipped.Value?.Body switch
+            {
+                IEnumerable<object> enumerable => enumerable.Select(e => e.ToString()),
+                string @string => new[] { @string },
+                _ => Enumerable.Empty<string>()
+            };
 
             return new SnippetInput
             {

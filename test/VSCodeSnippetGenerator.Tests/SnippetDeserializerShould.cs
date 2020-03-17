@@ -38,5 +38,22 @@ namespace VSCodeSnippetGenerator.Tests
             Assert.Equal("\t$0", lines[3]);
             Assert.Equal("}", lines[4]);
         }
+
+        [Fact]
+        public void DeserializeSingleLineSnippet()
+        {
+            const string snippet = @"""Property"": {
+		        ""prefix"": ""prop"",
+		        ""body"": ""public int MyProperty { get; set; }""
+	        }";
+
+            var deserializer = new SnippetDeserializer();
+
+            var snippetInput = deserializer.GetSnippetInput(snippet);
+
+            Assert.Equal("Property", snippetInput.Name);
+            Assert.Equal("prop", snippetInput.Prefix);
+            Assert.Equal("public int MyProperty { get; set; }", snippetInput.Body);
+        }
     }
 }
