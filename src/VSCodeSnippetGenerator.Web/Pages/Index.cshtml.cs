@@ -24,6 +24,9 @@ namespace VSCodeSnippetGenerator.Web.Pages
         [Display(Name = "Snippet")]
         public string SnippetOutput { get; set; }
 
+        [Display(Name = "Press \"Tab\" to indent")]
+        public bool TabToIndent { get; set; }
+
         public void OnGet() => SnippetOutput = _snippetGenerator.GetSnippet(SnippetInput.Empty);
 
         public void OnPost()

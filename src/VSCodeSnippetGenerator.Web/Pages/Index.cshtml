@@ -47,6 +47,10 @@
                 <textarea asp-for="SnippetInput.Body" rows="10" class="form-control"></textarea>
                 <span asp-validation-for="SnippetInput.Body" class="text-danger"></span>
             </div>
+            <div class="form-check text-right">
+                <input asp-for="TabToIndent" class="form-check-input">
+                <label asp-for="TabToIndent" class="form-check-label"></label>
+            </div>
             <div class="mb-3">
                 <div class="form-group">
                     <label asp-for="SnippetInput.Description"></label>
