@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using VSCodeSnippetGenerator.Web.Models;
 
 namespace VSCodeSnippetGenerator.Web.Services
@@ -22,7 +23,7 @@ namespace VSCodeSnippetGenerator.Web.Services
 
             var lines = deserializedSnipped.Value?.Body switch
             {
-                IEnumerable<object> enumerable => enumerable.Select(e => e.ToString()),
+                IEnumerable<JToken> enumerable when enumerable.All(e => e.Type == JTokenType.String) => enumerable.Select(e => e.ToString()),
                 string @string => new[] { @string },
                 _ => Enumerable.Empty<string>()
             };

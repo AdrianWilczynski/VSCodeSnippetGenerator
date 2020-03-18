@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using VSCodeSnippetGenerator.Web.Services;
 using Xunit;
 
-namespace VSCodeSnippetGenerator.Tests
+namespace VSCodeSnippetGenerator.UnitTests
 {
     public class SnippetDeserializerShould
     {

@@ -4,7 +4,7 @@ using VSCodeSnippetGenerator.Web.Models;
 using VSCodeSnippetGenerator.Web.Services;
 using Xunit;
 
-namespace VSCodeSnippetGenerator.Tests
+namespace VSCodeSnippetGenerator.UnitTests
 {
     public class SnippetGeneratorShould
     {
