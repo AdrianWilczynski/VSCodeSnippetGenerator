@@ -61,7 +61,22 @@ namespace VSCodeSnippetGenerator.Web.Services
                 return body;
             }
 
-            return body.Replace(new string(' ', (int)tabLength), "\t");
+            var tabCount = 0;
+            string beforeReplace;
+            var afterReplace = body;
+
+            do
+            {
+                beforeReplace = afterReplace;
+                afterReplace = Regex.Replace(
+                    beforeReplace,
+                    $@"(?<=^\t{{{tabCount}}}) {{{tabLength}}}", "\t",
+                    RegexOptions.Multiline);
+
+                tabCount++;
+            } while (beforeReplace != afterReplace);
+
+            return afterReplace;
         }
 
         private string EscapeDollarSigns(string body)
@@ -72,7 +87,7 @@ namespace VSCodeSnippetGenerator.Web.Services
                 "TM_CURRENT_WORD", "TM_LINE_INDEX", "TM_LINE_NUMBER", "TM_DIRECTORY", "TM_FILEPATH",
                 "CLIPBOARD", "WORKSPACE_NAME", "CURRENT_YEAR", "CURRENT_YEAR_SHORT", "CURRENT_MONTH",
                 "CURRENT_MONTH_NAME", "CURRENT_MONTH_NAME_SHORT", "CURRENT_DATE", "CURRENT_DAY_NAME",
-                "CURRENT_DAY_NAME_SHORT", "CURRENT_HOUR", "CURRENT_MINUTE","CURRENT_SECOND",
+                "CURRENT_DAY_NAME_SHORT", "CURRENT_HOUR", "CURRENT_MINUTE", "CURRENT_SECOND",
                 "CURRENT_SECONDS_UNIX", "BLOCK_COMMENT_START", "BLOCK_COMMENT_END", "LINE_COMMENT"
             };
 

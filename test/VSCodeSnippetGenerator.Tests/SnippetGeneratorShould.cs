@@ -112,5 +112,54 @@ namespace VSCodeSnippetGenerator.Tests
 
             Assert.Equal("        \"\\\\$name = ${1:name};\"", lines[3]);
         }
+
+        [Fact]
+        public void PreserveSpacesNotUsedForIndentation()
+        {
+            var input = new SnippetInput
+            {
+                Body = "    // SOME    TEXT",
+                TabLength = 4,
+                ConvertToTabs = true
+            };
+
+            var snippet = new SnippetGenerator().GetSnippet(input);
+
+            var lines = Regex.Split(snippet, @"\r?\n");
+
+            Assert.EndsWith("\"\\t// SOME    TEXT\"", lines[3]);
+        }
+
+        [Fact]
+        public void ConvertSpacesToTabsForDeeplyNestedCode()
+        {
+            var input = new SnippetInput
+            {
+
+                Body = @"public void MethodName()
+{
+    if (true)
+    {
+        WriteLine();
+    }
+}",
+                ConvertToTabs = true,
+                TabLength = 2
+            };
+
+            var generator = new SnippetGenerator();
+
+            var snippet = generator.GetSnippet(input);
+
+            var lines = Regex.Split(snippet, @"\r?\n");
+
+            Assert.EndsWith("\"public void MethodName()\",", lines[3]);
+            Assert.EndsWith("\"{\",", lines[4]);
+            Assert.EndsWith("\"\\t\\tif (true)\",", lines[5]);
+            Assert.EndsWith("\"\\t\\t{\",", lines[6]);
+            Assert.EndsWith("\"\\t\\t\\t\\tWriteLine();\",", lines[7]);
+            Assert.EndsWith("\"\\t\\t}\",", lines[8]);
+            Assert.EndsWith("\"}\"", lines[9]);
+        }
     }
 }
